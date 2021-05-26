@@ -20,18 +20,23 @@
         </form>
       </div>
     </div>
+    <div class="row">
+      <h1>{{state.stock}}</h1>
+    </div>
   </div>
 </template>
 
 <script>
 import { reactive } from '@vue/reactivity'
-import { onMounted } from '@vue/runtime-core'
+import { computed, onMounted } from '@vue/runtime-core'
 import { tickerService } from '../services/TickerService'
 import { logger } from '../utils/Logger'
+import { AppState } from '../AppState'
 export default {
   name: 'Home',
   setup() {
     const state = reactive({
+      stock: computed(() => AppState.prices),
       ticker: '',
       date: ''
     })

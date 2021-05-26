@@ -18,7 +18,7 @@ class TickerService {
     try {
       const res = await apiPrice.get(`${ticker}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       // const res = await apiPrice.get(`${ticker}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
-      AppState.activeSymbol = res.data
+      AppState.prices = res.data
       logger.log(res.data)
     } catch (error) {
       logger.log(error)
