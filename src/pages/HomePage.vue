@@ -1,6 +1,25 @@
 <template>
-  <div class="home">
-    <h2>Money Market</h2>
+  <div class="home container-fluid">
+    <div class="row">
+      <div class="col">
+        <h2>Money Market</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <form @submit.prevent="search">
+          <label for="name">Ticker</label>
+          <input type="text"
+          name="ticker"
+          id="ticker"
+          class="m-1"
+          placeholder="Ticker..."
+          v-model="state.ticker">
+          <input type="date" name="date" id="date" class="m-1" v-model="state.date">
+          <button type="submit" class="m-1 btn btn-dark">Search</button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,6 +43,8 @@ export default {
       async search() {
         try {
           await tickerService.getPrice(state.ticker, state.date)
+          state.ticker = ''
+          state.date = ''
         } catch (error) {
           logger.log(error)
         }
