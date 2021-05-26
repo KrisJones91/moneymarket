@@ -21,7 +21,12 @@
       </div>
     </div>
     <div class="row">
-      <h1>{{state.stock}}</h1>
+      <div class="col">
+        <h1>{{state.stock.symbol}}</h1>
+        <h3>Close: {{state.stock.close}}</h3>
+        <h3>High {{state.stock.high}}</h3>
+        <h3>Low: {{state.stock.low}}</h3>
+      </div>
     </div>
   </div>
 </template>
@@ -37,6 +42,7 @@ export default {
   setup() {
     const state = reactive({
       stock: computed(() => AppState.prices),
+      search: computed(() => AppState.searched),
       ticker: '',
       date: ''
     })
@@ -50,6 +56,7 @@ export default {
           await tickerService.getPrice(state.ticker, state.date)
           state.ticker = ''
           state.date = ''
+          AppState.searched = [...AppState.searched]
         } catch (error) {
           logger.log(error)
         }
