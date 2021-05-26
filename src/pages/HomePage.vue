@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="home"
-  >
-
+  <div class="home">
+    <h2>Money Market</h2>
   </div>
 </template>
 
@@ -10,16 +8,26 @@
 import { reactive } from '@vue/reactivity'
 import { onMounted } from '@vue/runtime-core'
 import { tickerService } from '../services/TickerService'
+import { logger } from '../utils/Logger'
 export default {
   name: 'Home',
   setup() {
-    const state = reactive({})
+    const state = reactive({
+      ticker: '',
+      date: ''
+    })
     onMounted(async() => {
       await tickerService.searchSymbols()
-      await tickerService.getPrice()
     })
     return {
-      state
+      state,
+      async search() {
+        try {
+          await tickerService.getPrice(state.ticker, state.date)
+        } catch (error) {
+          logger.log(error)
+        }
+      }
     }
   }
 }
