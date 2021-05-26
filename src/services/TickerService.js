@@ -1,11 +1,11 @@
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
-import { api } from './AxiosService'
+import { api, apiPrice } from './AxiosService'
 
 class TickerService {
   async searchSymbols() {
     try {
-      const res = await api.get('tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
+      const res = await api.get('tickers?active=true&sort=ticker&order=asc&limit=20000&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       logger.log(res)
       AppState.tickers = res.data
       logger.log(res.data.results)
@@ -14,12 +14,17 @@ class TickerService {
     }
   }
 
-  // async getPrice() {
-  //   let symbol = ''
-  //   const res = await apiPrice.get( `${symbol}` + '/2020-10-14?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
-  //   logger.log(res)
-  //   AppState.activeSymbol
-  // }
+  async getPrice() {
+    try {
+      const stocksTicker = ''
+      const date = ''
+      const res = await apiPrice.get(`${stocksTicker}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
+      logger.log(res)
+      AppState.activeSymbol = res.data
+    } catch (error) {
+      logger.log(error)
+    }
+  }
 }
 
 export const tickerService = new TickerService()
