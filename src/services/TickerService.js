@@ -10,6 +10,7 @@ class TickerService {
       logger.log(res)
       AppState.dividends = res.data.results
       logger.log(res.data.results)
+
     } catch (error) {
       logger.log(error)
     }
