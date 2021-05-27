@@ -1,10 +1,11 @@
 <template>
   <div class="Dividend col-3 mt-1">
     <div class="card">
-      <h4><small>Amount: ${{ divProp.amount }}</small></h4>
-      <p><small>Date to Expect: {{ divProp.paymentDate.slice(5,7) }}/{{ divProp.paymentDate.slice(8,10)}}</small></p>
-      <p><small>Recorded on: {{ divProp.recordDate.slice(5,7) }}/{{divProp.recordDate.slice(8,10)}}</small></p>
-      <p><small>Executed on {{ divProp.exDate }}</small></p>
+      <h4 class="m-1"><small>Amount: ${{ divProp.amount }}</small></h4>
+      <p class="mt-2 mb-0"><b>DATES</b></p>
+      <p class="m-0"><small>Expect: {{ divProp.paymentDate.slice(5,7) }}/{{ divProp.paymentDate.slice(8,10)}}</small></p>
+      <p class="m-0"><small>Recorded: {{ divProp.recordDate.slice(5,7) }}/{{divProp.recordDate.slice(8,10)}}</small></p>
+      <p class="m-0"><small>Executed {{ divProp.exDate }}</small></p>
 
     </div>
   </div>
