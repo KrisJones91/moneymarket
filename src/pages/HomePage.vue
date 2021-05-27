@@ -39,9 +39,15 @@
         </div>
       </div>
       <div class="col-4 mt-5">
-        <div class="card img-fluid">
-          <img class="m-3" :src="state.info.logo" alt="">
-        </div>
+        <!-- <div class="card-img-top img-fluid"> -->
+          <p><img class="m-3 logo" v-if="state.info.logo" :src="state.info.logo" alt="logo"> {{state.info.name}}</p>
+          <p class="m-0" v-if="state.info.ceo">CEO: {{state.info.ceo}}</p>
+          <p class="m-0" v-if="state.info.sector">Sector: {{state.info.sector}}</p>
+          <p class="m-0" v-if="state.info.logo">Market Cap: ${{state.info.marketcap}}</p>
+          <!-- <p class="m-0">{{state.info.name}}</p> -->
+          <a href="http://www.apple.com">Website</a>
+
+        <!-- </div> -->
       </div>
     </div>
     <div class="row justify-content-center pt-4 pb-0" v-if="state.dividends != false">
@@ -147,5 +153,8 @@ img {
   // min-height: 50%;
   // min-width: 50%;
   border-radius: 10%;
+}
+.logo {
+  box-shadow: 1px 2px 10px black;
 }
 </style>
