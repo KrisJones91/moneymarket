@@ -8,16 +8,8 @@ class TickerService {
     try {
       const res = await api.get(`${ticker}` + '?&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       logger.log(res)
-      AppState.dividends = res.data
-      logger.log(res.data)
-      // function loop() {
-      //   const results = res.data.results
-      //   for (let i = 0; i < results.length; i++) {
-      //     const all = results[i]
-      //     logger.log(all)
-      //   }
-      // }
-      // return loop()
+      AppState.dividends = res.data.results
+      logger.log(res.data.results)
     } catch (error) {
       logger.log(error)
     }

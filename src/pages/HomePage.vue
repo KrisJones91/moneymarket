@@ -38,8 +38,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <!-- <DividendComponent v-for="dividend in state.dividends" :key="dividend.id" :dividend-prop="dividend" /> -->
+    <div class="row justify-content-center pt-4">
+      <h2>Dividend History</h2>
+    </div>
+    <div class="row justify-content-center py-1">
+      <Dividend v-for="dividend in state.dividends" :key="dividend.id" :div-prop="dividend" />
     </div>
   </div>
 </template>
@@ -50,9 +53,8 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { tickerService } from '../services/TickerService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
-import DividendComponent from '../components/DividendComponent.vue'
+
 export default {
-  components: { DividendComponent },
   name: 'Home',
   setup() {
     const state = reactive({
@@ -77,6 +79,9 @@ export default {
         }
       }
     }
+  },
+  components: {
+    // Dividend
   }
 }
 </script>
