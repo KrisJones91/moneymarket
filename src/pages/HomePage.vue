@@ -39,7 +39,7 @@
       </div>
     </div>
     <div class="row">
-      <DividendComponent v-for="dividend in state.dividends" :key="dividend.id" :dividend-prop="dividend" />
+      <!-- <DividendComponent v-for="dividend in state.dividends" :key="dividend.id" :dividend-prop="dividend" /> -->
     </div>
   </div>
 </template>

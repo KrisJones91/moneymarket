@@ -25,7 +25,8 @@ class TickerService {
 
   async getPrice(ticker, date) {
     try {
-      const res = await apiPrice.get(`${ticker}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
+      const tickers = ticker.toUpperCase()
+      const res = await apiPrice.get(`${tickers}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       AppState.prices = res.data
       logger.log(res.data)
     } catch (error) {
