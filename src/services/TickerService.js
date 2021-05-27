@@ -12,11 +12,12 @@ class TickerService {
       logger.log(res.data)
       // function loop() {
       //   const results = res.data.results
-      //   for (let i = 0; i < results.length; i++){
-      //     console.log(results)
+      //   for (let i = 0; i < results.length; i++) {
+      //     const all = results[i]
+      //     logger.log(all)
       //   }
       // }
-      return loop()
+      // return loop()
     } catch (error) {
       logger.log(error)
     }

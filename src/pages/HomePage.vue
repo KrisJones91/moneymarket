@@ -29,7 +29,7 @@
       <div class="col">
         <h1>{{state.stock.symbol}}</h1>
         <h3>Close: {{state.stock.close}}</h3>
-        <h3>High {{state.stock.high}}</h3>
+        <h3>High: {{state.stock.high}}</h3>
         <h3>Low: {{state.stock.low}}</h3>
       </div>
     </div>
