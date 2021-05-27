@@ -13,25 +13,33 @@
     <div class="row">
       <div class="col">
         <form @submit.prevent="search">
-          <label for="name">Ticker</label>
+          <label for="name">Ticker:</label>
           <input type="text"
           name="ticker"
           id="ticker"
           class="m-1"
-          placeholder="Ticker..."
+          placeholder="Search..."
           v-model="state.ticker">
           <input type="date" name="date" id="date" class="m-1" v-model="state.date">
           <button type="submit" class="m-1 btn btn-dark">Search</button>
         </form>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <h1>{{state.stock.symbol}}</h1>
-        <h3>Close: {{state.stock.close}}</h3>
-        <h3>High: {{state.stock.high}}</h3>
-        <h3>Low: {{state.stock.low}}</h3>
+    <div class="row justify-content-center">
+      <div class="col-6 mt-5">
+        <div class="card p-3" v-if="state.stock.symbol">
+          <div>
+            <h1 class="symbol m-0">{{state.stock.symbol}}</h1>
+            <p class="mb-3" v-if="state.stock.from"><em>{{state.stock.from.slice(5,7)}}/{{state.stock.from.slice(8,10)}}/{{state.stock.from.slice(0,4)}}</em></p>
+          </div>
+            <h5 v-if="state.stock.close">Close: <b class="closed">{{state.stock.close}}</b></h5>
+            <h5 v-if="state.stock.high">High: <b class="high">{{state.stock.high}}</b></h5>
+            <h5 v-if="state.stock.low">Low: <b class="low">{{state.stock.low}}</b></h5>
+        </div>
       </div>
+    </div>
+    <div class="row">
+      <DividendComponent v-for="dividend in state.dividends" :key="dividend.id" :dividend-prop="dividend" />
     </div>
   </div>
 </template>
@@ -42,10 +50,13 @@ import { computed, onMounted } from '@vue/runtime-core'
 import { tickerService } from '../services/TickerService'
 import { logger } from '../utils/Logger'
 import { AppState } from '../AppState'
+import DividendComponent from '../components/DividendComponent.vue'
 export default {
+  components: { DividendComponent },
   name: 'Home',
   setup() {
     const state = reactive({
+      dividends: computed(() => AppState.dividends),
       stock: computed(() => AppState.prices),
       search: computed(() => AppState.searched),
       ticker: '',
@@ -78,5 +89,28 @@ export default {
     height: 200px;
     width: 200px;
   }
+}
+.card {
+  // border-radius: 12px;
+  border: 2px outset white;
+  // color: white;
+  // box-shadow: 1px 5px 12px gray;
+  box-shadow: 4px 8px 12px rgb(153, 152, 152);
+  background-image: linear-gradient(180deg, rgb(255, 255, 255), rgb(197, 197, 197));
+  // border: none;
+  border-radius: 15px;
+}
+.symbol {
+ color: rgb(0, 0, 0);
+ text-shadow: 3px 3px 7px rgb(94, 94, 94);
+}
+.closed {
+  color: blue;
+}
+.high {
+  color: green;
+}
+.low {
+  color: red;
 }
 </style>
