@@ -39,15 +39,19 @@
         </div>
       </div>
       <div class="col-4 mt-5">
-        <!-- <div class="card-img-top img-fluid"> -->
-          <p><img class="m-3 logo" v-if="state.info.logo" :src="state.info.logo" alt="logo"> {{state.info.name}}</p>
-          <p class="m-0" v-if="state.info.ceo">CEO: {{state.info.ceo}}</p>
-          <p class="m-0" v-if="state.info.sector">Sector: {{state.info.sector}}</p>
-          <p class="m-0" v-if="state.info.logo">Market Cap: ${{state.info.marketcap}}</p>
-          <!-- <p class="m-0">{{state.info.name}}</p> -->
-          <a href="http://www.apple.com">Website</a>
+        <div class="card img-fluid">
+          <h5><img class="mt-3 mr-3 logo" v-if="state.info.logo" :src="state.info.logo" alt="logo"> {{state.info.name}}</h5>
+          <p class="m-0" v-if="state.info.ceo"><b>CEO:</b> {{state.info.ceo}}</p>
+          <p class="m-0" v-if="state.info.sector"><b>Sector:</b> {{state.info.sector}}</p>
+          <p class="m-0" v-if="state.info.sector"><b>Exchange:</b> {{state.info.exchange}}</p>
+          <p class="m-0" v-if="state.info.hq_state"><b>HQ:</b> {{state.info.hq_state}} - {{state.info.hq_country}}</p>
+          <p class="m-0" v-if="state.info.listdate"><b>IPO Date:</b> {{state.info.listdate.slice(5,7)}}/{{state.info.listdate.slice(8,10)}}/{{state.info.listdate.slice(0,4)}}</p>
 
-        <!-- </div> -->
+          <!-- <p class="m-0" v-if="state.info.logo">Market Cap: ${{state.info.marketcap}}</p> -->
+          <!-- <p class="m-0">{{state.info.name}}</p> -->
+          <a :href="state.info.url">Website</a>
+
+        </div>
       </div>
     </div>
     <div class="row justify-content-center pt-4 pb-0" v-if="state.dividends != false">

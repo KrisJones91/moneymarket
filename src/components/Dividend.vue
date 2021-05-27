@@ -41,6 +41,6 @@ export default {
   overflow-y: auto;
 }
 .card-header{
-  background-color: lightsalmon;
+  background-color: rgb(146, 250, 186);
 }
 </style>
