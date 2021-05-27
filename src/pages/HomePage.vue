@@ -155,6 +155,6 @@ img {
   border-radius: 10%;
 }
 .logo {
-  box-shadow: 1px 2px 10px black;
+  box-shadow: 3px 5px 10px rgb(78, 78, 78);
 }
 </style>
