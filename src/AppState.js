@@ -6,5 +6,6 @@ export const AppState = reactive({
   account: {},
   dividends: [],
   prices: [],
-  searched: []
+  searched: [],
+  info: []
 })

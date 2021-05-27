@@ -1,7 +1,7 @@
 
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
-import { api, apiPrice } from './AxiosService'
+import { api, apiPrice, apiInfo } from './AxiosService'
 
 class TickerService {
   async getDividends(ticker) {
@@ -20,6 +20,16 @@ class TickerService {
       const tickers = ticker.toUpperCase()
       const res = await apiPrice.get(`${tickers}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       AppState.prices = res.data
+      logger.log(res.data)
+    } catch (error) {
+      logger.log(error)
+    }
+  }
+
+  async getInfo(ticker) {
+    try {
+      const res = await apiInfo.get(`${ticker}` + '/company?&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
+      AppState.info = res.data
       logger.log(res.data)
     } catch (error) {
       logger.log(error)
