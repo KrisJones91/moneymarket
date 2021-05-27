@@ -38,10 +38,10 @@
         </div>
       </div>
     </div>
-    <div class="row justify-content-center pt-4">
+    <div class="row justify-content-center pt-4 pb-0">
       <h2>Dividend History</h2>
     </div>
-    <div class="row justify-content-center py-1">
+    <div class="row pt-0 mt-0 divs">
       <Dividend v-for="dividend in state.dividends" :key="dividend.id" :div-prop="dividend" />
     </div>
   </div>
@@ -117,5 +117,14 @@ export default {
 }
 .low {
   color: red;
+}
+.divs {
+  max-height: 350px;
+  overflow-y: auto;
+  border: outset 2px rgb(167, 167, 167);
+  // background-color: rgba(224, 224, 224, 0.349);
+  border-radius: 10px;
+  margin: 5%;
+  box-shadow: 4px 8px 12px rgb(153, 152, 152);
 }
 </style>
