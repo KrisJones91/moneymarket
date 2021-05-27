@@ -1,14 +1,22 @@
+
 import { AppState } from '../AppState'
 import { logger } from '../utils/Logger'
 import { api, apiPrice } from './AxiosService'
 
 class TickerService {
-  async searchSymbols() {
+  async getDividends(ticker) {
     try {
-      const res = await api.get('tickers?active=true&sort=ticker&order=asc&limit=300&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
+      const res = await api.get(`${ticker}` + '?&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       logger.log(res)
-      AppState.tickers = res.data
-      logger.log(res.data.results)
+      AppState.dividends = res.data
+      logger.log(res.data)
+      // function loop() {
+      //   const results = res.data.results
+      //   for (let i = 0; i < results.length; i++){
+      //     console.log(results)
+      //   }
+      // }
+      return loop()
     } catch (error) {
       logger.log(error)
     }
@@ -17,7 +25,6 @@ class TickerService {
   async getPrice(ticker, date) {
     try {
       const res = await apiPrice.get(`${ticker}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
-      // const res = await apiPrice.get(`${ticker}` + '/' + `${date}` + '?unadjusted=true&apiKey=zvsoXQZpkLALd_lBxJDzY1d5BpMSh9Oz')
       AppState.prices = res.data
       logger.log(res.data)
     } catch (error) {

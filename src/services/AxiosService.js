@@ -1,7 +1,7 @@
 import Axios from 'axios'
 // import { baseURL } from '../env'
 export const api = Axios.create({
-  baseURL: 'https://api.polygon.io/v3/reference/',
+  baseURL: 'https://api.polygon.io/v2/reference/dividends/',
   timeout: 8000
 })
 export const apiPrice = Axios.create({

@@ -2,9 +2,14 @@
   <div class="home container-fluid">
     <div class="row">
       <div class="col">
-        <h2>Money Market</h2>
+        <h1 class="mt-3">Money Market</h1>
       </div>
     </div>
+      <div class="row justify-content-center">
+        <div class="col">
+            <h5 class="m-2">Search all securities information </h5>
+        </div>
+      </div>
     <div class="row">
       <div class="col">
         <form @submit.prevent="search">
@@ -47,16 +52,15 @@ export default {
       date: ''
     })
     onMounted(async() => {
-      await tickerService.searchSymbols()
     })
     return {
       state,
       async search() {
         try {
           await tickerService.getPrice(state.ticker, state.date)
+          await tickerService.getDividends(state.ticker)
           state.ticker = ''
           state.date = ''
-          AppState.searched = [...AppState.searched]
         } catch (error) {
           logger.log(error)
         }

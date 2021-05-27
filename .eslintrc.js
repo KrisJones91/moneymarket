@@ -1,3 +1,5 @@
+const { NULL } = require("node-sass")
+
 const ALWAYS = 'always'
 const NEVER = 'never'
 const ERROR = 2
