@@ -12,6 +12,10 @@ export const apiInfo = Axios.create({
   baseURL: 'https://api.polygon.io/v1/meta/symbols/',
   timeout: 8000
 })
+export const apiHoliday = Axios.create({
+  baseURL: 'https://api.polygon.io/v1/marketstatus/',
+  timeout: 8000
+})
 
 export const setBearer = function (bearer) {
   api.defaults.headers.authorization = bearer

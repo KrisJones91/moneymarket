@@ -7,5 +7,6 @@ export const AppState = reactive({
   dividends: [],
   prices: [],
   searched: [],
-  info: []
+  info: [],
+  holidays: []
 })

@@ -1,35 +1,52 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
-      <div class="col">
-        <h1 class="mt-3">Money Market</h1>
-      </div>
-    </div>
-      <div class="row justify-content-center">
-        <div class="col">
+      <!-- left side title / search area -->
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <h1 class="mt-3">Money Market</h1>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col">
             <h5 class="m-2">Search all securities information </h5>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col text-center">
+            <form @submit.prevent="search">
+              <label for="name">Ticker:</label>
+              <input type="text"
+              name="ticker"
+              id="ticker"
+              class="m-1"
+              placeholder="Search..."
+              v-model="state.ticker">
+              <br>
+              <label for="name">Dates: </label>
+              <input type="date" name="date" id="date" class="m-1" v-model="state.date">
+              <br>
+              <button type="submit" class="m-1 btn btn-dark">Search</button>
+            </form>
+          </div>
         </div>
       </div>
-    <div class="row justify-content-center">
-      <div class="col text-center">
-        <form @submit.prevent="search">
-          <label for="name">Ticker:</label>
-          <input type="text"
-          name="ticker"
-          id="ticker"
-          class="m-1"
-          placeholder="Search..."
-          v-model="state.ticker">
-          <br>
-          <label for="name">Dates: </label>
-          <input type="date" name="date" id="date" class="m-1" v-model="state.date">
-          <br>
-          <button type="submit" class="m-1 btn btn-dark">Search</button>
-        </form>
+      <!-- right side holiday schedule -->
+      <div class="col-6">
+        <div class="row">
+          <div class="col">
+            <h2 class="mt-3">Holidays</h2>
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
       </div>
     </div>
+    <!-- card personalized info -->
     <div class="row justify-content-center">
-      <div class="col-6 mt-5">
+      <div class="col-4 mt-5">
         <div class="card p-3" v-if="state.stock.symbol">
           <h1 class="symbol m-0">{{state.stock.symbol}}</h1>
             <p class="mb-3" v-if="state.stock.from"><em>{{state.stock.from.slice(5,7)}}/{{state.stock.from.slice(8,10)}}/{{state.stock.from.slice(0,4)}}</em></p>
@@ -37,20 +54,25 @@
             <h5 v-if="state.stock.high">High: <b class="high">{{state.stock.high}}</b></h5>
             <h5 v-if="state.stock.low">Low: <b class="low">{{state.stock.low}}</b></h5>
         </div>
+        </div>
+        <div class="col-5 m-0 mt-5 text-center">
+        <!-- <div class=""> -->
+        <div class="row">
+          <div class="col text-center m-0 p-0">
+            <img class="m-0 p-0 logo" v-if="state.info.logo" :src="state.info.logo" alt="logo">
+          </div>
+          <div class="col text-left">
+            <h4 class="mt-0 pt-0"> {{state.info.name}}</h4>
+            <p class="m-0" v-if="state.info.ceo"><b>CEO:</b> {{state.info.ceo}}</p>
+            <p class="m-0" v-if="state.info.sector"><b>Sector:</b> {{state.info.sector}}</p>
+            <p class="m-0" v-if="state.info.sector"><b>Exchange:</b> {{state.info.exchange}}</p>
+            <p class="m-0" v-if="state.info.hq_state"><b>HQ:</b> {{state.info.hq_state}} - {{state.info.hq_country}}</p>
+            <p class="m-0" v-if="state.info.listdate"><b>IPO Date:</b> {{state.info.listdate.slice(5,7)}}/{{state.info.listdate.slice(8,10)}}/{{state.info.listdate.slice(0,4)}}</p>
+
+            <!-- <p class="m-0" v-if="state.info.logo">Market Cap: ${{state.info.marketcap}}</p> -->
+            <!-- <p class="m-0">{{state.info.name}}</p> -->
+            <a :href="state.info.url" v-if="state.info.url" class="text-center">Website</a>
       </div>
-      <div class="col-4 mt-5">
-        <div class="card img-fluid">
-          <h5><img class="mt-3 mr-3 logo" v-if="state.info.logo" :src="state.info.logo" alt="logo"> {{state.info.name}}</h5>
-          <p class="m-0" v-if="state.info.ceo"><b>CEO:</b> {{state.info.ceo}}</p>
-          <p class="m-0" v-if="state.info.sector"><b>Sector:</b> {{state.info.sector}}</p>
-          <p class="m-0" v-if="state.info.sector"><b>Exchange:</b> {{state.info.exchange}}</p>
-          <p class="m-0" v-if="state.info.hq_state"><b>HQ:</b> {{state.info.hq_state}} - {{state.info.hq_country}}</p>
-          <p class="m-0" v-if="state.info.listdate"><b>IPO Date:</b> {{state.info.listdate.slice(5,7)}}/{{state.info.listdate.slice(8,10)}}/{{state.info.listdate.slice(0,4)}}</p>
-
-          <!-- <p class="m-0" v-if="state.info.logo">Market Cap: ${{state.info.marketcap}}</p> -->
-          <!-- <p class="m-0">{{state.info.name}}</p> -->
-          <a :href="state.info.url">Website</a>
-
         </div>
       </div>
     </div>
@@ -82,6 +104,7 @@ export default {
       date: ''
     })
     onMounted(async() => {
+      await tickerService.getHolidays()
     })
     return {
       state,
@@ -108,10 +131,7 @@ export default {
 .home {
   text-align: center;
   user-select: none;
-  > img {
-    height: 200px;
-    width: 200px;
-  }
+  background-color: rgb(221, 221, 221);
 }
 .card {
   // border-radius: 12px;
@@ -137,7 +157,7 @@ export default {
   color: red;
 }
 #ticker {
-  color: rgb(15, 139, 161);
+  color: rgb(161, 15, 15);
 }
 #date {
   color: rgb(161, 15, 15);
@@ -152,13 +172,15 @@ export default {
   box-shadow: 4px 8px 12px rgb(153, 152, 152);
 }
 img {
-  max-height: 20%;
-  max-width: 20%;
+  max-height: 50%;
+  max-width: 50%;
   // min-height: 50%;
   // min-width: 50%;
   border-radius: 10%;
+
 }
 .logo {
   box-shadow: 3px 5px 10px rgb(78, 78, 78);
+  position: absolute;
 }
 </style>
