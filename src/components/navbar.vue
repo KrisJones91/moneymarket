@@ -126,7 +126,9 @@ a:hover {
   color: var(--primary);
 }
 .bg {
-  background-color: white;
+  background-image: url('https://media1.giphy.com/media/13ln9K5TWkNTLa/200.gif');
+  background-repeat: none;
+  background-size:contain ;
 }
 .logo {
   border: 1px solid rgb(255, 151, 16);

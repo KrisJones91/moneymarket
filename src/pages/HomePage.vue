@@ -10,7 +10,7 @@
     <div class="row justify-content-center">
       <!-- left side title / search area -->
       <div class="col-10">
-        <h1 class="">Money Market</h1>
+        <h1 class="mm">Money Market</h1>
           <div class="row justify-content-center">
             <div class="col">
               <h5 class="m-2">Search all securities information </h5>
@@ -122,6 +122,16 @@ export default {
   text-align: center;
   user-select: none;
   background-color: rgb(221, 221, 221);
+}
+.mm {
+  color: transparent;
+    font-family: 'Raleway', sans-serif;
+   font-size: 100px;
+   font-weight: bold;
+  -webkit-background-clip: text;
+  background-image: url('https://media1.giphy.com/media/13ln9K5TWkNTLa/200.gif');
+  background-repeat: none;
+  -webkit-text-stroke: 4px rgba(0, 0, 0, 0.719);
 }
 .card {
   // border-radius: 12px;
