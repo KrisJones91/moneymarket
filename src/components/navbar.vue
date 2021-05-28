@@ -1,11 +1,12 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column align-items-center">
         <img
           alt="logo"
-          src="../assets/img/sm.jpg"
+          src="../assets/img/bullsbears.png"
           height="45"
+          class="logo"
         />
       </div>
     </router-link>
@@ -123,5 +124,12 @@ a:hover {
 }
 .nav-item .nav-link.router-link-exact-active{
   color: var(--primary);
+}
+.bg {
+  background-color: white;
+}
+.logo {
+  border: 1px solid rgb(255, 151, 16);
+  border-radius: 50%;
 }
 </style>

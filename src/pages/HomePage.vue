@@ -45,6 +45,7 @@
             <h5 v-if="state.stock.close">Close: <b class="closed">{{state.stock.close}}</b></h5>
             <h5 v-if="state.stock.high">High: <b class="high">{{state.stock.high}}</b></h5>
             <h5 v-if="state.stock.low">Low: <b class="low">{{state.stock.low}}</b></h5>
+            <h5 v-if="state.stock.volume">Volume: <b class="volume">{{state.stock.volume}}</b></h5>
         </div>
         </div>
         <div class="col-5 m-0 mt-5 text-center">
@@ -60,9 +61,6 @@
             <p class="m-0" v-if="state.info.sector"><b>Exchange:</b> {{state.info.exchange}}</p>
             <p class="m-0" v-if="state.info.hq_state"><b>HQ:</b> {{state.info.hq_state}} - {{state.info.hq_country}}</p>
             <p class="m-0" v-if="state.info.listdate"><b>IPO Date:</b> {{state.info.listdate.slice(5,7)}}/{{state.info.listdate.slice(8,10)}}/{{state.info.listdate.slice(0,4)}}</p>
-
-            <!-- <p class="m-0" v-if="state.info.logo">Market Cap: ${{state.info.marketcap}}</p> -->
-            <!-- <p class="m-0">{{state.info.name}}</p> -->
             <a :href="state.info.url" v-if="state.info.url" class="text-center">Website</a>
       </div>
         </div>
@@ -96,7 +94,7 @@ export default {
       date: ''
     })
     onMounted(async() => {
-      // await tickerService.getHolidays()
+      await tickerService.getHolidays()
     })
     return {
       state,
@@ -136,7 +134,7 @@ export default {
   border-radius: 15px;
 }
 .symbol {
- color: rgb(75, 75, 75);
+ color: rgb(27, 27, 27);
  text-shadow: 3px 5px 7px rgb(168, 168, 168);
 }
 .closed {
@@ -147,6 +145,9 @@ export default {
 }
 .low {
   color: red;
+}
+.volume {
+  color:rgb(149, 101, 10);
 }
 #ticker {
   color: rgb(161, 15, 15);

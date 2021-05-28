@@ -4,7 +4,7 @@
       <div class="col-6">
         <div class="card">
           <div class="row justify-content-center">
-          <div class="col-4 ml-3">
+          <div class="col-4 ml-3" v-if="state.holiday">
             <h5>Holiday</h5>
             <p>{{state.holiday[0].name}}</p>
             <p>{{state.holiday[2].name}}</p>
