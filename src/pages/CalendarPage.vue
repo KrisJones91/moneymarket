@@ -1,7 +1,10 @@
 <template>
   <div class="CalendarPage cp container-fluid">
-    <div class="row">
-      <div class="col-6">
+    <div class="row justify-content-center">
+      <div class="col-6 text-center">
+        <h1 class="mt-4">Money Market</h1>
+        <h3 class="text-danger">Closures</h3>
+        <p><small>*Nasdaq, S&P, DOW, Rusell*</small></p>
         <div class="card">
           <div class="row justify-content-center">
           <div class="col-4 ml-3" v-if="state.holiday">
