@@ -1,6 +1,42 @@
 <template>
-  <div class="CalendarPage container-fluid">
+  <div class="CalendarPage cp container-fluid">
+    <div class="row">
+      <div class="col-6">
+        <div class="card">
+          <div class="row justify-content-center">
+          <div class="col-4 ml-3">
+            <h5>Holiday</h5>
+            <p>{{state.holiday[0].name}}</p>
+            <p>{{state.holiday[2].name}}</p>
+            <p>{{state.holiday[4].name}}</p>
+            <p>{{state.holiday[6].name}}</p>
+            <p>{{state.holiday[8].name}}</p>
+            <p>{{state.holiday[10].name}}</p>
+          </div>
+          <div class="col-3 m-0">
+            <h5>Date</h5>
+            <p>{{state.holiday[0].date}}</p>
+            <p>{{state.holiday[2].date}}</p>
+            <p>{{state.holiday[4].date}}</p>
+            <p>{{state.holiday[6].date}}</p>
+            <p>{{state.holiday[8].date}}</p>
+            <p>{{state.holiday[10].date}}</p>
+          </div>
+          <div class="col-3">
+            <h5>Status</h5>
+            <p>{{state.holiday[0].status}}</p>
+            <p>{{state.holiday[2].status}}</p>
+            <p>{{state.holiday[4].status}}</p>
+            <p>{{state.holiday[6].status}}</p>
+            <p>{{state.holiday[8].status}}</p>
+            <p>{{state.holiday[10].status}}</p>
+          </div>
+          <!-- {{state.holiday[0].name}} -->
 
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,5 +66,7 @@ export default {
 </script>
 
 <style>
-
+.cp {
+  background-color: rgb(221, 221, 221);
+}
 </style>
