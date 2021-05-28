@@ -156,7 +156,7 @@ export default {
   color: rgb(161, 15, 15);
 }
 .divs {
-  max-height: 350px;
+  max-height: 440px;
   overflow-y: auto;
   border: outset 2px rgb(167, 167, 167);
   // background-color: rgba(224, 224, 224, 0.349);
