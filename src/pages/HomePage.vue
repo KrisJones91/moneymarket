@@ -1,48 +1,40 @@
 <template>
   <div class="home container-fluid">
     <div class="row">
+      <div class="col">
+        <router-link class="link" :to="{ name: 'CalendarPage' }">
+          <i class="far fa-calendar-alt fa-3x float-right mt-3"></i>
+        </router-link>
+      </div>
+    </div>
+    <div class="row justify-content-center">
       <!-- left side title / search area -->
-      <div class="col-6">
-        <div class="row">
-          <div class="col">
-            <h1 class="mt-3">Money Market</h1>
+      <div class="col-10">
+        <h1 class="">Money Market</h1>
+          <div class="row justify-content-center">
+            <div class="col">
+              <h5 class="m-2">Search all securities information </h5>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col">
+              <form @submit.prevent="search">
+                <label for="name">Ticker:</label>
+                <input type="text"
+                name="ticker"
+                id="ticker"
+                class="m-1"
+                placeholder="Search..."
+                v-model="state.ticker">
+                <br>
+                <label for="name">Dates: </label>
+                <input type="date" name="date" id="date" class="m-1" v-model="state.date">
+                <br>
+                <button type="submit" class="m-1 btn btn-dark">Search</button>
+              </form>
+            </div>
           </div>
         </div>
-        <div class="row justify-content-center">
-          <div class="col">
-            <h5 class="m-2">Search all securities information </h5>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col text-center">
-            <form @submit.prevent="search">
-              <label for="name">Ticker:</label>
-              <input type="text"
-              name="ticker"
-              id="ticker"
-              class="m-1"
-              placeholder="Search..."
-              v-model="state.ticker">
-              <br>
-              <label for="name">Dates: </label>
-              <input type="date" name="date" id="date" class="m-1" v-model="state.date">
-              <br>
-              <button type="submit" class="m-1 btn btn-dark">Search</button>
-            </form>
-          </div>
-        </div>
-      </div>
-      <!-- right side holiday schedule -->
-      <div class="col-6">
-        <div class="row">
-          <div class="col">
-            <h2 class="mt-3">Holidays</h2>
-          </div>
-        </div>
-        <div class="row">
-
-        </div>
-      </div>
     </div>
     <!-- card personalized info -->
     <div class="row justify-content-center">
@@ -104,7 +96,7 @@ export default {
       date: ''
     })
     onMounted(async() => {
-      await tickerService.getHolidays()
+      // await tickerService.getHolidays()
     })
     return {
       state,
@@ -182,5 +174,13 @@ img {
 .logo {
   box-shadow: 3px 5px 10px rgb(78, 78, 78);
   position: absolute;
+}
+.link {
+  color: rgb(130, 148, 228);
+  cursor: pointer;
+
+}
+.link:hover {
+  color: rgb(32, 62, 192);
 }
 </style>
