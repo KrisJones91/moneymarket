@@ -131,7 +131,7 @@ export default {
   -webkit-background-clip: text;
   background-image: url('https://media1.giphy.com/media/13ln9K5TWkNTLa/200.gif');
   background-repeat: none;
-  -webkit-text-stroke: 4px rgba(0, 0, 0, 0.719);
+  -webkit-text-stroke: 3px rgba(21, 61, 6, 0.719);
 }
 .card {
   // border-radius: 12px;
